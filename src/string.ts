@@ -41,7 +41,7 @@ export function mapper(
 }
 
 /**
- * Truncate string and add ... to end of string
+ * truncate string and add ... to end of string if string length bigger than truncate length
  *
  * @param v string to truncate
  * @param length truncate length

@@ -35,16 +35,6 @@ export function jalali(
 }
 
 /**
- * get gregorian date from jalali date
- *
- * @param jalali jalali date
- * @returns moment object or null on fail
- */
-export function gregorian(jalali: string): Moment | null {
-    let d = moment.from(jalali, "fa");
-    return d.isValid() ? d : null;
-}
-/**
  * get jalali month name
  *
  * @param month month number
@@ -66,6 +56,17 @@ export function jalaliMonth(month: number): string | null {
         "اسفند",
     ];
     return typeof months[month - 1] === "undefined" ? null : months[month - 1];
+}
+
+/**
+ * get gregorian date from jalali date
+ *
+ * @param jalali jalali date
+ * @returns moment object or null on fail
+ */
+export function gregorian(jalali: string): Moment | null {
+    let d = moment.from(jalali, "fa");
+    return d.isValid() ? d : null;
 }
 
 /**
@@ -102,7 +103,7 @@ export function wordifyTimeFa(date: string): string | null {
 }
 
 /**
- * Create date from seconds
+ * create date from seconds
  *
  * @param seconds seconds
  * @param obj determine functions must return date string or moment object

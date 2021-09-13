@@ -1,195 +1,105 @@
-# Validator
+# Utils
 
-Extra validators for yup.
+Utility functions for different data types and operations.
 
 ## Installation
 
 ### CDN
 
-This package published as `validators` module in umd.
+This package published as `utils` module in umd.
 
 ```html
-<script src="https://unpkg.com/@bardoui/validators"></script>
+<script src="https://unpkg.com/@bardoui/utils"></script>
 ```
 
 ### NPM
 
 ```bash
-npm i @bardoui/validators
+npm i @bardoui/utils
 ```
 
-```ts
-import {
-  registerAll,
-  registerCreditCardValidator,
-  registerUsernameValidator,
-} from "@bardoui/validators";
-// Register all validators
-registerAll();
-// Register custom validator only
-registerCreditCardValidator();
-registerUsernameValidator();
-```
+## Date
 
-## Utility Functions
+### jalaliAgo
 
-Validate package contains following helper functions:
-
-### extractErrorKeys
-
-This function get key value response and returns error keys only.
-
-```ts
-// Signature:
-export function extractErrorKeys(errors: KeyedError): ErrorMap;
-
-// Example
-// Error Response => {"username": {"max": "username max is 20 char", "unique": "username must unique"}, "password": {"min" :"password must have 10 char at least"}}
-// result => {"username": ["max","unique"], "password": ["min"]}
-```
-
-### extractErrorMessages
-
-This function get key value response and returns error messages only.
-
-```ts
-// Signature:
-export function extractErrorMessages(errors: KeyedError): ErrorMap;
-
-// Example
-// Error Response => {"username": {"max": "username max is 20 char", "unique": "username must unique"}, "password": {"min" :"password must have 10 char at least"}}
-// result => {"username": ["username max is 20 char","username must unique"], "password": ["password must have 10 char at least"]}
-```
-
-### makeYupKeyedErrors
-
-This function override yup default translator and return error key as error message.
-
-```ts
-// Signature:
-export function makeYupKeyedErrors();
-
-// Example
-// instead of 'this field is required' message return 'required'
-```
-
-## Usage
-
-Validator contains following validators:
-
-**Note** by default all validators return validator key as error message (in lowercase). you can pass error message on create time or use time to override this behavior.
-
-### credit
-
-Validate credit card number. this validator accept tow mode, long (20 digit) and short (16 digit) card number. Allowed formats:
-
-- **20 digit**: `xxxx-xxxx-xxxx-xxxx-xxxx` or `xxxx-xxxx-xxxx-xxxx-xxxx`
-- **16 digit**: `xxxx-xxxx-xxxx-xxxx` or `xxxx-xxxx-xxxx-xxxx`
-
-`x` represent one digit.
-
-```ts
-// 20 digit
-yup.string().credit(true);
-// 16 digit
-yup.string().credit(false, "invalid credit card number");
-```
-
-### idNumber
-
-Validate id number string (0 to 10 digit string).
-
-```ts
-yup.string().idNumber();
-```
-
-### identifier
-
-Validate number greater than 1.
-
-```ts
-yup.number().identifier();
-```
-
-### ip
-
-Validate IPv4 string.
-
-```ts
-yup.string().ip();
-```
-
-### ipPort
-
-Validate IPv4 string with port.
-
-```ts
-yup.string().ipPort();
-```
+Get ago string of date in jalali.
 
 ### jalali
 
-Validate jalali date string by format.
+Get jalali date string from date.
+
+### jalaliMonth
+
+Get jalali month name.
+
+### gregorian
+
+Get gregorian date from jalali date string.
+
+### wordifyTimeFa
+
+Get human friendly time in persian (FA).
+
+### dateFromSeconds
+
+Create date from seconds.
+
+## Formatters
+
+### formatMobile
+
+Format iranian mobile number.
 
 ```ts
-yup.string().jalali("YYYY/MM/DD");
+import { formatMobile } from "@bardoui/utils";
+formatMobile("(0912) 123-4567", "$1$2$3$4"); // 09121234567
+formatMobile("09121234567", "($1) $2-$3$4"); // (0912) 123-4567
 ```
 
-### mobile
+### formatNationalCode
 
-Validate persian mobile number. accept (09xx) xxx-xxx and 09xxxxxxxx formats.
+Format iranian national code.
+
+### formatPostalCode
+
+Format iranian postal code.
+
+### formatTel
+
+Format iranian tel.
+
+## Number
+
+### prettyNum
+
+Format number with comma separator and sign.
 
 ```ts
-yup.string().mobile();
+import { prettyNum } from "@bardoui/utils";
+prettyNum(12345.456); // 12,345.45
+prettyNum(12345.456, true, "0,0"); // +12,345
 ```
 
-### nationalCode
+## String
 
-Validate persian national code. accept xxx-xxxxxx-x and xxxxxxxxxx formats.
+### alter
 
-```ts
-yup.string().nationalCode();
-```
+Return alter for empty value.
 
-### postalCode
+### slugify
 
-Validate persian postal code. accept xxxxx-xxxxx and xxxxxxxxxx formats.
+Make slugify string from strings. join multiple strings and remove spaces.
 
-```ts
-yup.string().postalCode();
-```
+### mapper
 
-### tel
+Search for value in replacement object and return replacement if found, otherwise returns value itself.
 
-Validate persian tel. accept (0xx) xxxx-xxxx and 0xxxxxxxxxx formats for prefixed mode and xxxx-xxxx and xxxxxxxx for non-prefixed mode.
+**Note**: you can use \* key in replacement to define default value if no replacement is defined.
 
-```ts
-// Prefixed mode (11 digit)
-yup.string().tel(true);
-// Non-prefixed mode (8 digit)
-yup.string().tel(false);
-```
+### truncate
 
-### unsigned
+Truncate string and add ... to end of string if string length bigger than truncate length.
 
-Validate unsigned number (0 or greater).
+### str
 
-```ts
-yup.number().unsigned();
-```
-
-### username
-
-Validate username. username can contains numbers, alpha, dash, dot and underscore characters.
-
-```ts
-yup.string().username();
-```
-
-### uuid
-
-Validate uuid string.
-
-```ts
-yup.string().uuid();
-```
+Convert value to string. if falsy value passed this function returns empty string.

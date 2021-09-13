@@ -1,7 +1,7 @@
 import numeral from "numeral";
 
 /**
- * Format number with separator
+ * format number with comma separator and sign
  *
  * @param v number
  * @param sign determine number must contains sign (+ and -) or not
