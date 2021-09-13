@@ -80,6 +80,10 @@ prettyNum(12345.456); // 12,345.45
 prettyNum(12345.456, true, "0,0"); // +12,345
 ```
 
+### extractNumber
+
+Extract number from formatted string.
+
 ## String
 
 ### alter

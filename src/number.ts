@@ -15,3 +15,15 @@ export function prettyNum(
 ): string {
     return (sign && v > 0 ? "+" : "") + numeral(v).format(format);
 }
+
+/**
+ * Extract number from formatted string
+ *
+ * @param numStr number
+ * @returns num
+ */
+export function extractNumber(numStr: string): number | null {
+    let parts = (numStr.match(/[\d\.]+/g) || []).join("").split(".");
+    let num = parts.slice(0, 2).join(".");
+    return num.length > 0 ? +num : null;
+}
