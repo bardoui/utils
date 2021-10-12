@@ -23,7 +23,8 @@ export function prettyNum(
  * @returns num
  */
 export function extractNumber(numStr: string): number | null {
-    let parts = (numStr.match(/[\d\.]+/g) || []).join("").split(".");
+    let parts = (numStr.match(/-?[\d\.]+/g) || []).join("").split(".");
     let num = parts.slice(0, 2).join(".");
+    num = num.replace(/(?!^)-/g, "");
     return num.length > 0 ? +num : null;
 }
