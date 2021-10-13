@@ -1,30 +1,40 @@
-import numeral from "numeral";
-
 /**
- * format number with comma separator and sign
+ * format number with comma separator
  *
- * @param v number
- * @param sign determine number must contains sign (+ and -) or not
- * @param format format string (npm numeral package style)
+ * @param v string contains numeric value
+ * @param separator separator character
  * @returns formatted string
  */
-export function prettyNum(
-    v: number,
-    sign = false,
-    format = "0,0[.][00]"
-): string {
-    return (sign && v > 0 ? "+" : "") + numeral(v).format(format);
+export function formatNumber(v: any, separator = ","): string {
+    return v
+        .toString()
+        .replace(/(?<!(\.\d*|^.{0}))(?=(\d{3})+(?!\d))/g, separator);
 }
 
 /**
- * Extract number from formatted string
+ * extract numeric character from string
  *
- * @param numStr number
- * @returns num
+ * @param v string
+ * @returns string
  */
-export function extractNumber(numStr: string): number | null {
-    let parts = (numStr.match(/-?[\d\.]+/g) || []).join("").split(".");
-    let num = parts.slice(0, 2).join(".");
-    num = num.replace(/(?!^)-/g, "");
-    return num.length > 0 ? +num : null;
+export function extractNumeric(v: string): string {
+    return (v.match(/[-\d.]+/g) || [])
+        .join("")
+        .split(".")
+        .slice(0, 2)
+        .join(".")
+        .split("")
+        .map((c, index) => (c === "-" ? (index === 0 ? c : "") : c))
+        .join("");
+}
+
+/**
+ * parse number from string
+ *
+ * @param v number
+ * @returns number or NaN
+ */
+export function parseNumber(v: string): number {
+    const n = extractNumeric(v);
+    return n.length === 0 || isNaN(+n) ? NaN : +n;
 }

@@ -46,6 +46,8 @@ Create date from seconds.
 
 ## Formatters
 
+You can use [vMask](https://github.com/bardoui/vmask) library for advanced formatting.
+
 ### formatMobile
 
 Format iranian mobile number.
@@ -70,19 +72,38 @@ Format iranian tel.
 
 ## Number
 
-### prettyNum
+### formatNumber
 
-Format number with comma separator and sign.
+Format number with comma separator.
 
 ```ts
-import { prettyNum } from "@bardoui/utils";
-prettyNum(12345.456); // 12,345.45
-prettyNum(12345.456, true, "0,0"); // +12,345
+import { formatNumber } from "@bardoui/utils";
+formatNumber("$ 12345.00002"); // $ 12,345.00002
+formatNumber(12345.456, " "); // 12 345.345
 ```
 
-### extractNumber
+### extractNumeric
 
-Extract number from formatted string.
+Extract numeric character from string.
+
+**Caution**: this function extract all numeric characters (`-`, `[0-9]`, `.`)/ for parsing number use `parseNumber` function.
+
+```ts
+import { extractNumeric } from "@bardoui/utils";
+extractNumeric("$ 12345.00002"); // "12345.00002"
+extractNumeric("Balance is : -32123.0001"); // "-32123.0001"
+parseNumber("with none - string number ."); // "-."
+```
+
+### parseNumber
+
+Parse number from string.
+
+```ts
+import { parseNumber } from "@bardoui/utils";
+parseNumber("$ 12345.00002"); // 12345.00002
+parseNumber("with none . string number -"); // NaN
+```
 
 ## String
 
