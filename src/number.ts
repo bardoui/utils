@@ -25,7 +25,11 @@ export function extractNumeric(v: string): string {
         .join(".")
         .split("")
         .map((c, index) => (c === "-" ? (index === 0 ? c : "") : c))
-        .join("");
+        .join("")
+        .replace(/^0+/, "0")
+        .replace(/^-[0]+/, "-0")
+        .replace(/^\./, "0.")
+        .replace(/^-\./, "-0.");
 }
 
 /**
