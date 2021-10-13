@@ -8,7 +8,7 @@
 export function formatNumber(v: any, separator = ","): string {
     return v
         .toString()
-        .replace(/(?<!(\.\d*|^.{0}))(?=(\d{3})+(?!\d))/g, separator);
+        .replace(/(?<!(\.\d*|^.{0}))\B(?=(\d{3})+(?!\d))/g, separator);
 }
 
 /**
