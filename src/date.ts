@@ -59,6 +59,28 @@ export function jalaliMonth(month: number): string | null {
 }
 
 /**
+ * get moment js date from jalali date string.
+ *
+ * @param jalali jalali date
+ * @returns moment object or null on fail
+ */
+export function jMoment(jalali: string): Moment | null {
+    let d = moment.from(jalali, "fa");
+    return d.isValid() ? d.locale("fa") : null;
+}
+
+/**
+ * get moment js date from jalali formatted date string.
+ *
+ * @param jalali jalali date
+ * @returns moment object or null on fail
+ */
+export function jMomentFrom(jalali: string, format: string): Moment | null {
+    let d = moment.from(jalali, "fa", format);
+    return d.isValid() ? d.locale("fa") : null;
+}
+
+/**
  * get gregorian date from jalali date
  *
  * @param jalali jalali date
@@ -66,7 +88,7 @@ export function jalaliMonth(month: number): string | null {
  */
 export function gregorian(jalali: string): Moment | null {
     let d = moment.from(jalali, "fa");
-    return d.isValid() ? d : null;
+    return d.isValid() ? d.locale("en") : null;
 }
 
 /**
@@ -77,7 +99,7 @@ export function gregorian(jalali: string): Moment | null {
  */
 export function gregorianFrom(jalali: string, format: string): Moment | null {
     let d = moment.from(jalali, "fa", format);
-    return d.isValid() ? d : null;
+    return d.isValid() ? d.locale("en") : null;
 }
 
 /**

@@ -32,6 +32,14 @@ Get jalali date string from date.
 
 Get jalali month name.
 
+### jMoment
+
+Get moment js date from jalali date string.
+
+### jMomentFrom
+
+Get moment js date from jalali formatted date string.
+
 ### gregorian
 
 Get gregorian date from jalali date string.
