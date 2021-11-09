@@ -70,6 +70,17 @@ export function gregorian(jalali: string): Moment | null {
 }
 
 /**
+ * get gregorian date from jalali formatted date
+ *
+ * @param jalali jalali date
+ * @returns moment object or null on fail
+ */
+export function gregorianFrom(jalali: string, format: string): Moment | null {
+    let d = moment.from(jalali, "fa", format);
+    return d.isValid() ? d : null;
+}
+
+/**
  * get human friendly time in persian (FA)
  *
  * @param date date string

@@ -36,6 +36,10 @@ Get jalali month name.
 
 Get gregorian date from jalali date string.
 
+### gregorianFrom
+
+Get gregorian date from jalali formatted date string.
+
 ### wordifyTimeFa
 
 Get human friendly time in persian (FA).
