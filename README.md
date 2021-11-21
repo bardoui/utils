@@ -117,6 +117,16 @@ parseNumber("$ 12345.00002"); // 12345.00002
 parseNumber("with none . string number -"); // NaN
 ```
 
+## Object
+
+### deepClone
+
+Create a deep clone of object.
+
+```ts
+function deepClone<T = any>(v: unknown): T;
+```
+
 ## String
 
 ### alter
