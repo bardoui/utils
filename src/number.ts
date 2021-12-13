@@ -2,13 +2,10 @@
  * format number with comma separator
  *
  * @param v string contains numeric value
- * @param separator separator character
  * @returns formatted string
  */
-export function formatNumber(v: any, separator = ","): string {
-    return v
-        .toString()
-        .replace(/(?<!(\.\d*|^.{0}))\B(?=(\d{3})+(?!\d))/g, separator);
+export function formatNumber(v: number): string {
+    return v.toLocaleString("en")
 }
 
 /**

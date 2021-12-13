@@ -18,70 +18,6 @@ This package published as `utils` module in umd.
 npm i @bardoui/utils
 ```
 
-## Date
-
-### jalaliAgo
-
-Get ago string of date in jalali.
-
-### jalali
-
-Get jalali date string from date.
-
-### jalaliMonth
-
-Get jalali month name.
-
-### jMoment
-
-Get moment js date from jalali date string.
-
-### jMomentFrom
-
-Get moment js date from jalali formatted date string.
-
-### gregorian
-
-Get gregorian date from jalali date string.
-
-### gregorianFrom
-
-Get gregorian date from jalali formatted date string.
-
-### wordifyTimeFa
-
-Get human friendly time in persian (FA).
-
-### dateFromSeconds
-
-Create date from seconds.
-
-## Formatters
-
-You can use [vMask](https://github.com/bardoui/vmask) library for advanced formatting.
-
-### formatMobile
-
-Format iranian mobile number.
-
-```ts
-import { formatMobile } from "@bardoui/utils";
-formatMobile("(0912) 123-4567", "$1$2$3$4"); // 09121234567
-formatMobile("09121234567", "($1) $2-$3$4"); // (0912) 123-4567
-```
-
-### formatNationalCode
-
-Format iranian national code.
-
-### formatPostalCode
-
-Format iranian postal code.
-
-### formatTel
-
-Format iranian tel.
-
 ## Number
 
 ### formatNumber
@@ -90,8 +26,7 @@ Format number with comma separator.
 
 ```ts
 import { formatNumber } from "@bardoui/utils";
-formatNumber("$ 12345.00002"); // $ 12,345.00002
-formatNumber(12345.456, " "); // 12 345.345
+formatNumber(12345.456); // 12,345.345
 ```
 
 ### extractNumeric
