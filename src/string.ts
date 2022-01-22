@@ -17,7 +17,7 @@ export function alter(v: any, alt = "-"): string {
  * @returns slugify string
  */
 export function slugify(strings: string[], joiner = "-"): string {
-    return strings.join(joiner).replaceAll(/^( )+&/, "-");
+    return strings.join(joiner).replaceAll(/^( )+&/, joiner);
 }
 
 /**
