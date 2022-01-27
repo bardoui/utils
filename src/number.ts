@@ -1,11 +1,26 @@
 /**
- * format number with comma separator
+ * replace all non-numeric character in string with separator character
+ * @param v string contains number
+ * @param separator separator character
+ * @returns unified numeric string
+ */
+export function unifySeparator(v: string, separator: string) {
+    return v.replace(/[^0-9.-]+/g, separator);
+}
+
+/**
+ * format number with separator
  *
  * @param v string contains numeric value
+ * @param separator separator character
  * @returns formatted string
  */
-export function formatNumber(v: number): string {
-    return v.toLocaleString("en")
+export function formatNumber(v: any, separator = ","): string {
+    const n = parseNumber(`${v}`);
+    if (isNaN(n)) {
+        return "";
+    }
+    return unifySeparator(n.toLocaleString("en"), separator);
 }
 
 /**

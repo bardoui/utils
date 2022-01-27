@@ -20,13 +20,24 @@ npm i @bardoui/utils
 
 ## Number
 
+### unifySeparator
+
+Replace all non-numeric character in string with separator character.
+
+```ts
+import { unifySeparator } from "@bardoui/utils";
+unifySeparator("-3,233,312.33", "/"); // -3/233/312.33
+unifySeparator("123   ,   456", ","); // 123,456
+```
+
 ### formatNumber
 
-Format number with comma separator.
+Format number with separator.
 
 ```ts
 import { formatNumber } from "@bardoui/utils";
-formatNumber(12345.456); // 12,345.345
+formatNumber(12345.456, ","); // 12,345.345
+formatNumber("-3214.222", ","); // -3,214.222
 ```
 
 ### extractNumeric
