@@ -20,7 +20,9 @@ export function formatNumber(v: any, separator = ","): string {
     if (isNaN(n)) {
         return "";
     }
-    return unifySeparator(n.toLocaleString("en"), separator);
+    return unifySeparator(n.toLocaleString("en"), separator)
+        .replace(new RegExp(`^[${separator}]+`), "")
+        .replace(new RegExp(`[${separator}]+$`), "");
 }
 
 /**
