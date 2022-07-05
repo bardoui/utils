@@ -96,3 +96,7 @@ Truncate string and add ... to end of string if string length bigger than trunca
 ### str
 
 Convert value to string. if falsy value passed this function returns empty string.
+
+### joiner
+
+Concatenate non-falsy value with space.

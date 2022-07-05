@@ -60,3 +60,13 @@ export function truncate(v: string, length: number): string {
 export function str(v: any): string {
     return !!v ? `${v}` : "";
 }
+
+/**
+ * concatenate non-falsy value with space
+ *
+ * @param items items to concatenate
+ * @returns concatenated items
+ */
+export function joiner(...items: unknown[]): string {
+    return items.filter(Boolean).join(" ");
+}
